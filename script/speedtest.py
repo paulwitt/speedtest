@@ -41,7 +41,6 @@ this_interval = times[bisect.bisect(times,datetime.datetime.now())]
 date_cutoff = this_interval - datetime.timedelta(days=7)
 twenty_four_ago = this_interval - datetime.timedelta(days=1)
 
-
 ## Load the json file if it exists. Create an empty structure
 ## if it doesn't.
 ##
@@ -91,7 +90,7 @@ new_data.sort(key=lambda x: x['date'])
 ## Write out the data to file.
 ##
 data_output = json.dumps(new_data, default=date_handler, indent=4, sort_keys=True)
-#print "Writing out data file"
+print "Writing out data file"
 with open(data_file, "w") as text_file:
     text_file.write(data_output)
 
@@ -110,8 +109,8 @@ average_upload = (total_upload / divide_by) / (1024 * 1024)
 avg_download_msg = "Average download (last 7 days): %.2f MB/s" % (average_download)
 avg_upload_msg = "Average upload (last 7 days): %.2f MB/s" % (average_upload)
 
-#print avg_download_msg
-#print avg_upload_msg
+print avg_download_msg
+print avg_upload_msg
 
 ## Let's try to graph this.
 ##
@@ -162,3 +161,6 @@ plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 plt.tight_layout()
 
 plt.savefig(image_file)
+
+sys.exit(0)
+
